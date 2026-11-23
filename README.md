@@ -1,4 +1,3 @@
-job-application-tracker: 
 This is a C++ program that tracks job applications using data structures: linked list, hash table, binary search tree, min-heap, stack, queue, graph (BFS), recursion, merge sort and binary search.
 A small Python file adds a browser-based interface on top of the C++ program.
 
