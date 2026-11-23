@@ -21,7 +21,3 @@ Requirements
 - C++ compiler (Dev C++ or g++)
 - Python 3 (only for the browser interface, no extra packages)
 
-Group members
-- Samiya Siddiqui
-- Syeda Aiman Zubair
-- Rayyan Hussain
