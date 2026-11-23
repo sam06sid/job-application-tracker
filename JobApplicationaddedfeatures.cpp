@@ -10,10 +10,6 @@
 
 using namespace std;
 
-// ==========================================
-// APPLICATION RECORD
-// ==========================================
-
 class Application {
 public:
     int id;
@@ -21,14 +17,9 @@ public:
     int urgency;
 };
 
-// ==========================================
-// 1. GENERIC MERGE SORT
-// ==========================================
-
 template <class T, class Compare>
 void mergeSort(vector<T>& a, int l, int r, Compare comp) {
     if (l >= r) return;
-
     int mid = (l + r) / 2;
 
     mergeSort(a, l, mid, comp);
@@ -51,8 +42,6 @@ void mergeSort(vector<T>& a, int l, int r, Compare comp) {
         a[l + k] = temp[k];
 }
 
-// Comparison classes
-
 class StringLess {
 public:
     bool operator()(const string& a, const string& b) const {
@@ -67,10 +56,6 @@ public:
     }
 };
 
-// ==========================================
-// 2. LINKED LIST NODE
-// ==========================================
-
 class Node {
 public:
     Application app;
@@ -81,10 +66,6 @@ public:
         next = NULL;
     }
 };
-
-// ==========================================
-// 3. HASH TABLE
-// ==========================================
 
 class HashTable {
     static const int SIZE = 101;
@@ -132,10 +113,6 @@ public:
     }
 };
 
-// ==========================================
-// 4. BINARY SEARCH TREE NODE
-// ==========================================
-
 class TreeNode {
 public:
     string deadline;
@@ -148,10 +125,6 @@ public:
         left = right = NULL;
     }
 };
-
-// ==========================================
-// BINARY SEARCH TREE
-// ==========================================
 
 class DeadlineBST {
     TreeNode* root;
@@ -222,19 +195,11 @@ public:
     }
 };
 
-// ==========================================
-// 5. MIN-HEAP ITEM
-// ==========================================
-
 class HeapItem {
 public:
     int id, urgency;
     string deadline;
 };
-
-// ==========================================
-// MIN-HEAP
-// ==========================================
 
 class MinHeap {
     vector<HeapItem> heap;
@@ -327,19 +292,11 @@ public:
     }
 };
 
-// ==========================================
-// 6. UNDO STACK ACTION
-// ==========================================
-
 class UndoAction {
 public:
     string type, oldStatus;
     int id;
 };
-
-// ==========================================
-// 7. MAIN JOB TRACKER
-// ==========================================
 
 class JobTracker {
     Node* head;
@@ -353,8 +310,6 @@ class JobTracker {
     queue<int> interviewQueue;
 
     map<string, vector<string> > graph;
-
-    // Make field names easier to compare
     string normalizeText(string value) {
         string result = "";
 
@@ -408,8 +363,6 @@ class JobTracker {
         return value;
     }
 
-    // Find application by ID
-
     Node* findID(int id) {
         Node* p = head;
 
@@ -422,8 +375,6 @@ class JobTracker {
 
         return NULL;
     }
-
-    // Delete application from linked list
 
     void removeID(int id) {
         Node *p = head, *prev = NULL;
@@ -443,8 +394,6 @@ class JobTracker {
             p = p->next;
         }
     }
-
-    // Rebuild all indexes
 
     void rebuild() {
         hashTable.clear();
@@ -470,15 +419,11 @@ class JobTracker {
         }
     }
 
-    // Recursive application counting
-
     int countApps(Node* p) {
         if (p == NULL) return 0;
 
         return 1 + countApps(p->next);
     }
-
-    // Recursive status counting
 
     int countStatus(Node* p, string status) {
         if (p == NULL) return 0;
@@ -501,10 +446,6 @@ public:
             delete temp;
         }
     }
-
-    // ======================================
-    // ADD APPLICATION
-    // ======================================
 
     void addApplication() {
         Application a;
@@ -564,10 +505,6 @@ public:
         cout << "Application added! ID: " << a.id << endl;
     }
 
-    // ======================================
-    // DISPLAY APPLICATIONS
-    // ======================================
-
     void display() {
         if (head == NULL) {
             cout << "No applications found.\n";
@@ -594,10 +531,6 @@ public:
         }
     }
 
-    // ======================================
-    // HASH TABLE SEARCH
-    // ======================================
-
     void searchCompany() {
         string name;
 
@@ -622,10 +555,6 @@ public:
             }
         }
     }
-
-    // ======================================
-    // BINARY SEARCH
-    // ======================================
 
     void binarySearchCompany() {
         vector<string> names;
@@ -679,25 +608,13 @@ public:
             cout << "Company not found.\n";
     }
 
-    // ======================================
-    // BST DEADLINE DISPLAY
-    // ======================================
-
     void showDeadlines() {
         bst.display();
     }
 
-    // ======================================
-    // MIN-HEAP PRIORITY DISPLAY
-    // ======================================
-
     void showUrgency() {
         heap.display();
     }
-
-    // ======================================
-    // UPDATE STATUS
-    // ======================================
 
     void updateStatus() {
         int id;
@@ -731,10 +648,6 @@ public:
         cout << "Status updated successfully!\n";
     }
 
-    // ======================================
-    // UNDO USING STACK
-    // ======================================
-
     void undo() {
         if (undoStack.empty()) {
             cout << "Nothing to undo.\n";
@@ -761,10 +674,6 @@ public:
 
         rebuild();
     }
-
-    // ======================================
-    // INTERVIEW QUEUE
-    // ======================================
 
     void showQueue() {
         if (interviewQueue.empty()) {
@@ -806,10 +715,6 @@ public:
         cout << "No pending interviews.\n";
     }
 
-    // ======================================
-    // GRAPH: ADD COMPANY CONNECTION
-    // ======================================
-
     void addConnection() {
         string a, b;
 
@@ -837,10 +742,6 @@ public:
 
         cout << "Connection added!\n";
     }
-
-    // ======================================
-    // GRAPH: BFS
-    // ======================================
 
     void BFS() {
         string start;
@@ -881,10 +782,6 @@ public:
         cout << "END\n";
     }
 
-    // ======================================
-    // MERGE SORT BY DEADLINE
-    // ======================================
-
     void sortByDeadline() {
         vector<Application> apps;
 
@@ -912,11 +809,6 @@ public:
                  << apps[i].deadline << endl;
         }
     }
-
-
-    // ======================================
-    // FIELD-BASED JOB RECOMMENDATIONS
-    // ======================================
 
     void recommendJobs() {
         int choice;
@@ -1037,10 +929,6 @@ public:
         cout << "Search for these titles on job websites and check each employer's requirements.\n";
     }
 
-    // ======================================
-    // INTERVIEW PREPARATION ADVICE
-    // ======================================
-
     void interviewAdvice() {
         Node* p = head;
         bool hasInterview = false;
@@ -1156,10 +1044,6 @@ public:
         cout << "\nGood luck with your interview!\n";
     }
 
-    // ======================================
-    // RECURSIVE ANALYTICS
-    // ======================================
-
     void analytics() {
         cout << "\nAPPLICATION ANALYTICS\n";
 
@@ -1194,10 +1078,6 @@ public:
         }
     }
 };
-
-// ==========================================
-// MAIN MENU
-// ==========================================
 
 int main() {
     JobTracker tracker;
